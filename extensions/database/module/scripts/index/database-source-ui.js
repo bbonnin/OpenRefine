@@ -100,7 +100,10 @@ Refine.DatabaseSourceUI.prototype.attachUI = function(body) {
           $( "#databasePort" ).val("3306");	  
       }else if(type === "mariadb"){
           $( "#databaseUser" ).val("root");
-           $( "#databasePort" ).val("3306");	  
+          $( "#databasePort" ).val("3306");	  
+      }else if(type === "hive"){
+          $( "#databaseUser" ).val("hive");
+          $( "#databasePort" ).val("10000");    
       }else{
           $( "#databaseUser" ).val("root");
           $( "#databasePort" ).val("3306");

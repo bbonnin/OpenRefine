@@ -36,6 +36,7 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.refine.extension.database.hive.HiveDatabaseService;
 import com.google.refine.extension.database.mariadb.MariaDBDatabaseService;
 import com.google.refine.extension.database.model.DatabaseColumn;
 import com.google.refine.extension.database.model.DatabaseInfo;
@@ -57,6 +58,7 @@ public abstract class DatabaseService {
                 DatabaseService.DBType.registerDatabase(MySQLDatabaseService.DB_NAME, MySQLDatabaseService.getInstance());
                 DatabaseService.DBType.registerDatabase(PgSQLDatabaseService.DB_NAME, PgSQLDatabaseService.getInstance());
                 DatabaseService.DBType.registerDatabase(MariaDBDatabaseService.DB_NAME, MariaDBDatabaseService.getInstance());
+                DatabaseService.DBType.registerDatabase(HiveDatabaseService.DB_NAME, HiveDatabaseService.getInstance());
 
             } catch (Exception e) {
                 logger.error("Exception occurred while trying to prepare databases!", e);
@@ -98,7 +100,7 @@ public abstract class DatabaseService {
     public static DatabaseService get(String dbType) {
         logger.debug("get called on DatabaseService with, {}", dbType);
         DatabaseService databaseService = DatabaseService.DBType.getJdbcServiceFromType(dbType.toLowerCase());
-        
+        logger.debug("DatabaseService found: {}", databaseService);
         logger.debug("DatabaseService found: {}", databaseService.getClass());
         return databaseService;
        
